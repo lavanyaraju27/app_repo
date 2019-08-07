@@ -1,0 +1,26 @@
+version: '3'
+services:
+  app:
+   build:
+     context: /root/docker/app
+     dockerfile: Dockerfile
+   ports:
+    - '8080:80'
+   networks:
+    - network1
+   volumes:
+    - data:/jenkinsdata
+  web:
+    build:
+      context: /root/docker/node
+      dockerfile: Dockerfile
+    networks:
+     - network1
+    volumes:
+     - data:/nexesdata
+networks:
+    network1:
+      driver: "bridge"
+volumes:
+      data:
+       driver: "local"
