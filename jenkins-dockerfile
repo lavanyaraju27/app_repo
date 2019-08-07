@@ -1,0 +1,11 @@
+FROM ubuntu:16.04
+RUN apt-get update
+RUN apt-get install -y openjdk-8-jdk
+RUN apt-get install wget
+RUN apt-get install -y apt-utils
+RUN wget http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key
+RUN apt-key add jenkins-ci.org.key
+RUN sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+RUN apt-get update
+RUN apt-get install -y jenkins
+CMD tail -f /dev/null
