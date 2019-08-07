@@ -1,0 +1,12 @@
+FROM ubuntu:16.04
+RUN apt-get update
+RUN apt-get install -y openjdk-8-jre-headless 
+RUN apt-get install wget
+RUN apt-get install -y apt-utils
+RUN mkdir /app && cd /app
+RUN wget https://sonatype-download.global.ssl.fastly.net/repository/repositoryManager/3/nexus-3.16.1-02-unix.tar.gz 
+RUN tar -zxvf nexus-3.16.1-02-unix.tar.gz
+RUN mv nexus-3.16.1-02 nexus
+RUN adduser nexus
+RUN chown -R nexus:nexus /nexus 
+CMD tail -f /dev/null
